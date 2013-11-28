@@ -1,4 +1,4 @@
-Depth Enhanced Monocular Odometry (Demo) is a monocular visual odometry method assisted by depth maps, and optionally an IMU. This is the slimmed down version for running on embedded systems. It computes the camera motion between two image frames, without using bundle adjustment. The full version of the program is available at 
+Depth Enhanced Monocular Odometry (Demo) is a monocular visual odometry method assisted by depth maps, and optionally an IMU. This is the slimmed down version of the program for running on embedded systems. It computes the camera frame to frame motion, without using bundle adjustment. The full version is available at 
 
 Wiki Webpage: http://wiki.ros.org/demo_rgbd
 
