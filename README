@@ -1,0 +1,21 @@
+Depth Enhanced Monocular Odometry (Demo) is a monocular visual odometry method assisted by depth maps, and optionally an IMU. This is the slimmed down version for running on embedded systems. It computes the camera motion between two image frames, without using bundle adjustment. The full version of the program is available at 
+
+Wiki Webpage: http://wiki.ros.org/demo_rgbd
+
+GitHub Code: https://github.com/jizhang-cmu/demo_rgbd.git
+
+Also, another version of the program that uses a camera and a 3D lidar is available at
+
+Wiki Webpage: http://wiki.ros.org/demo_lidar
+
+GitHub Code: https://github.com/jizhang-cmu/demo_lidar.git
+
+How to use:
+
+1) Download the program file to a ROS directory, unpack the file and rename the folder to “demo_rgbd_slimmed” (GitHub added "-master" to the folder name). Go to the folder and “rosmake”, then “roslunch demo_rgbd_slimmed.launch”. The launch file should start the program and rviz.
+
+2) Download datasets from the following website. Play the data files with “rosbag play data_file_name.bag”. Note that if a slow computer is used, users can try to play the data files at a lower speed, e.g. “rosbag play data_file_name.bag -r 0.5” plays the data file at half speed.
+
+Datasets can be downloaded at: http://www.frc.ri.cmu.edu/~jizhang03
+
+Note: Camera intrinsic parameters (K matrices for rgb and depth images) are defined in the "src/cameraParameters.h" file. The current parameters are set at the default values for Xtion sensors.
