@@ -28,7 +28,7 @@ IplImage *imageShowRGB = cvCreateImage(showSize, IPL_DEPTH_8U, 3);
 
 CvMat kMat = cvMat(3, 3, CV_64FC1, kImage);
 
-const int maxFeatureNumPerSubregion = 20;
+const int maxFeatureNumPerSubregion = 10;
 const int xSubregionNum = 6;
 const int ySubregionNum = 4;
 const int totalSubregionNum = xSubregionNum * ySubregionNum;
