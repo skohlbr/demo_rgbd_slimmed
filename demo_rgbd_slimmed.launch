@@ -1,0 +1,9 @@
+<launch>
+
+  <node pkg="demo_rgbd_slimmed" type="featureTracking" name="featureTracking" output="screen"/>
+  <node pkg="demo_rgbd_slimmed" type="visualOdometry" name="visualOdometry" output="screen"/>
+  <node pkg="demo_rgbd_slimmed" type="processDepthmap" name="processDepthmap" output="screen"/>
+
+  <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find demo_rgbd_slimmed)/demo_rgbd_slimmed.vcg"/>
+
+</launch>
