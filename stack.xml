@@ -1,4 +1,4 @@
-<package>
+<stack>
 
   <version>0.9.1</version>
 
@@ -17,4 +17,4 @@
   <depend stack="vision_opencv" />
   <depend stack="perception_pcl" />
 
-</package>
+</stack>
