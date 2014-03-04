@@ -1,34 +1,62 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+cmake_minimum_required(VERSION 2.8.3)
+project(demo_rgbd_slimmed)
 
-# Set the build type.  Options are:
-#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
-#  Debug          : w/ debug symbols, w/o optimization
-#  Release        : w/o debug symbols, w/ optimization
-#  RelWithDebInfo : w/ debug symbols, w/ optimization
-#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
-#set(ROS_BUILD_TYPE RelWithDebInfo)
+set(CMAKE_BUILD_TYPE Release)
+set(BUILD_STATIC_LIBS ON)
+set(BUILD_SHARED_LIBS OFF)
 
-rosbuild_init()
+## Find catkin macros and libraries
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+  sensor_msgs
+  cv_bridge
+  pcl_ros
+)
 
-#set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-#set the default path for built libraries to the "lib" directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+find_package(OpenCV REQUIRED)
+find_package(PCL REQUIRED)
 
-#uncomment if you have defined messages
-#rosbuild_genmsg()
-#uncomment if you have defined services
-#rosbuild_gensrv()
+###################################
+## catkin specific configuration ##
+###################################
 
-#common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
-#target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-#rosbuild_add_executable(example examples/example.cpp)
-#target_link_libraries(example ${PROJECT_NAME})
+catkin_package(
+  CATKIN_DEPENDS
+  roscpp
+  std_msgs
+  sensor_msgs
+  cv_bridge
+  pcl_ros
+)
 
-rosbuild_add_executable(featureTracking src/featureTracking.cpp)
-rosbuild_add_executable(visualOdometry src/visualOdometry.cpp)
-rosbuild_add_executable(processDepthmap src/processDepthmap.cpp)
+###########
+## Build ##
+###########
+
+## Specify additional locations of header files
+## Your package locations should be listed before other locations
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
+  ${PCL_INCLUDE_DIRS}
+  /usr/local/include # Location when using 'make system_install'
+  /usr/include       # More usual location (e.g. when installing using a package)
+)
+
+## Specify additional locations for library files
+link_directories(
+  /usr/local/lib # Location when using 'make system_install'
+  /usr/lib       # More usual location (e.g. when installing using a package)
+)
+
+## Declare executables
+add_executable(featureTracking src/featureTracking.cpp)
+add_executable(visualOdometry src/visualOdometry.cpp)
+add_executable(processDepthmap src/processDepthmap.cpp)
+
+## Specify libraries to link a library or executable target against
+target_link_libraries(featureTracking ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(visualOdometry ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${PCL_LIBRARIES})
+target_link_libraries(processDepthmap ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${PCL_LIBRARIES})
+
