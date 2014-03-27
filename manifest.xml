@@ -5,7 +5,7 @@
 
   </description>
   <author>Ji Zhang</author>
-  <license>LGPL</license>
+  <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://wiki.ros.org/demo_rgbd</url>
   <depend package="roscpp"/>
